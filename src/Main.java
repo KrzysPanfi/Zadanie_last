@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Writer;
 import java.util.ArrayList;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
@@ -11,6 +12,9 @@ public class Main {
         ArrayList<String> slowa=Download(filepath);
         System.out.println(Zad1(slowa));
         System.out.println(Zad2(slowa));
+        for(String i:Zad3(slowa)){
+            System.out.println(i);
+        }
     }
     public static ArrayList<String> Download(String filepath) {
         ArrayList<String> Wynik = new ArrayList<>();
@@ -79,5 +83,27 @@ public static int Zad2(ArrayList<String>slowa){
         }
         return count;
 }
-public static ArrayList<String>Zad3(ArrayList<String>
+public static ArrayList<String>Zad3(ArrayList<String>slowa) {
+ArrayList<String>wynik=new ArrayList<>();
+int longest=0;
+    for (String i : slowa) {
+        int bloklenght=0;
+        char[]chars=i.toCharArray();
+        for(char j:chars){
+            if(j=='0')bloklenght++;
+            else bloklenght=0;
+        }
+
+        if(bloklenght==longest){
+            wynik.add(i);
+        }
+        if(bloklenght>longest){
+            longest=bloklenght;
+            wynik.clear();
+            wynik.add(i);
+        }
+    }
+    wynik.add(Integer.toString(longest));
+    return wynik;
+}
 }
